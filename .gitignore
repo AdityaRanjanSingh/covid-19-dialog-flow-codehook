@@ -1,0 +1,10 @@
+#ignore node modules
+**/node_modules
+
+#ignore coverage files
+**/.nyc_output
+**/.nyc_output/
+
+#ignore dist folder
+**/dist
+**/dist/
