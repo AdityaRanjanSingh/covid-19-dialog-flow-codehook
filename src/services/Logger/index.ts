@@ -1,4 +1,4 @@
-import { ILogger } from "./ILogger";
+import { ILogger } from "./ILogger.interface";
 import { injectable } from "inversify";
 import "reflect-metadata";
 @injectable()

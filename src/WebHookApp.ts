@@ -1,5 +1,5 @@
 import { inject, injectable } from "inversify";
-import { ILogger } from "./services/Logger/ILogger";
+import { ILogger } from "./services/Logger/ILogger.interface";
 import { DependencyIdentifier } from "./DependencyIdentifiers";
 import { CovidIndiaApiClient } from './services/CovidIndiaApiClient'
 import "reflect-metadata";

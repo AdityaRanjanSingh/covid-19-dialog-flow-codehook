@@ -4,6 +4,7 @@
   "description": "Twilio code hook for whatsapp channel for covid19 updates",
   "main": "dist/index.js",
   "scripts": {
+    "build": "tsc",
     "start": "tsc && node dist/index.js",
     "lint": "tslint --project .",
     "test": "nyc --reporter=text mocha -r ts-node/register ./src/**/*.spec.ts"
