@@ -32,6 +32,7 @@
     "chai": "^4.2.0",
     "mocha": "^7.1.1",
     "nyc": "^15.0.1",
+    "pre-commit": "^1.2.2",
     "sinon": "^9.0.2",
     "tslint": "^6.1.1",
     "typescript": "^3.8.3"
@@ -46,5 +47,9 @@
       "**/*.spec.js",
       "**/*.spec.ts"
     ]
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "test"
+  ]
 }

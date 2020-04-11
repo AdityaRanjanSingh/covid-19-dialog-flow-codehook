@@ -3,5 +3,7 @@ import { injectable } from "inversify";
 import "reflect-metadata";
 @injectable()
 export class CovidIndiaApiClient implements ICovidIndiaApiClient {
-
+    getCovidData() {
+        console.log('get the data here')
+    }
 }
