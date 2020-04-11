@@ -31,6 +31,6 @@ jobs:
     - run: cp package.json dist/package.json
     - run: cp Procfile dist/Procfile
     - run: npm install --production
-    - run: git push heroku master
+    - run: git push --repo=https://git.heroku.com/covid19-dialogflow-hook.git master
       env:
         CI: true
