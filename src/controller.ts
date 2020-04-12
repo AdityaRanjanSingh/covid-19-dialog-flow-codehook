@@ -5,7 +5,7 @@ import { WebhookClient } from 'dialogflow-fulfillment';
 import { inject } from 'inversify';
 import { DependencyIdentifier } from './DependencyIdentifiers';
 import { CovidWorld } from './services/CovidWorldApiClient';
-@controller('/')
+@controller('/covid-19')
 export class Controller {
     public constructor(
         @inject(DependencyIdentifier.COVID_WORLD) private covidWorld: CovidWorld) {
