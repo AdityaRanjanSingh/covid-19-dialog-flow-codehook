@@ -6,9 +6,6 @@ import axios, { AxiosResponse } from 'axios'
 import "reflect-metadata";
 @injectable()
 export class CovidWorld {
-    constructor() {
-
-    }
     public async  getDataByCountry(agent: WebhookClient): Promise<any> {
 
         const response = await this.getDataFromApi(agent.parameters.country)

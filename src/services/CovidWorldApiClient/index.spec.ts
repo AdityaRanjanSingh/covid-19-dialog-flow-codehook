@@ -63,7 +63,7 @@ function getRequestObject(intent: any, parameters: any) {
             ],
             "intent": {
                 "name": "projects/project-id/agent/intents/intent-id",
-                "displayName": intent//"corona-updates-by-country"
+                "displayName": intent // "corona-updates-by-country"
             },
             "intentDetectionConfidence": 1,
             "diagnosticInfo": {},

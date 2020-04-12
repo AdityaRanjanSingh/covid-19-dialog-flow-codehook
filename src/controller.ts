@@ -15,13 +15,9 @@ export class Controller {
     public async post(request: Request, response: Response): Promise<any> {
         const that = this;
         const agent = new WebhookClient({ request, response });
-        console.log("agent", agent)
-        let intentMap = new Map();
-        console.log(request, "respone", response)
-        // map all the intent with the fulfillment functions here 
-        intentMap.set('corona-updates-by-country', async (agent: WebhookClient) => { return await this.covidWorld.getDataByCountry(agent) }); // Could pass the function directly but gives an error hence a workaround
-
+        const intentMap = new Map();
+        // map all the intent with the fulfillment functions here
+        intentMap.set('corona-updates-by-country', async (a: WebhookClient) => { return await this.covidWorld.getDataByCountry(a) }); // Could pass the function directly but gives an error hence a workaround
         return Promise.resolve(agent.handleRequest(intentMap));
-
     }
 }

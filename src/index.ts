@@ -19,7 +19,7 @@ container.bind<ILogger>(DependencyIdentifier.LOGGER).to(Logger);
 container.bind<ICovidWorld>(DependencyIdentifier.COVID_WORLD).to(CovidWorld)
 
 // start the server
-let server = new InversifyExpressServer(container);
+const server = new InversifyExpressServer(container);
 
 server.setConfig((app) => {
     app.use(bodyParser.urlencoded({
@@ -28,6 +28,6 @@ server.setConfig((app) => {
     app.use(bodyParser.json());
 });
 
-let serverInstance = server.build();
+const serverInstance = server.build();
 serverInstance.listen(process.env.port || 3000);
 console.log("Server is listening")
