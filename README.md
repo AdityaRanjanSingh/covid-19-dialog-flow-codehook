@@ -63,6 +63,7 @@ Add additional notes about how to deploy this on a live system
 ## Authors
 
 * **Aditya Ranjan Singh** - *Developer* - 
+* **Qadir Husainee** - *Developer* - 
 
 ## License
 
