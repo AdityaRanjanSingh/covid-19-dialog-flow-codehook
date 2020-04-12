@@ -54,6 +54,9 @@ npm test
 
 Add additional notes about how to deploy this on a live system
 
+Deployement is done on the heroku server using the Heroku cli and git workflow
+
+
 ## Built With
 
 * Node - The Backend used

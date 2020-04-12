@@ -12,14 +12,17 @@ export class WebHookApp {
         @inject(DependencyIdentifier.DIALOG_FLOW_CLIENT) private covidIndiaApiClient: CovidIndiaApiClient) {
     }
 
-    public async start(): Promise<void> {
+    public async start(): Promise<any> {
 
         this.logger.log(`Starte apis`);
 
-
         try {
-            // Get the response form dialog flow here
-            process.exit(0)
+            return Promise.resolve({
+                speech: 'Coming from the hook',
+                displayText: 'Coming from the hook',
+                source: 'get-movie-details'
+            })
+
         } catch (error) {
             this.logger.log(`${error}`)
 
