@@ -1,6 +1,5 @@
-import { ILogger } from "./ILogger.interface";
+import { ILogger } from "../../interfaces/ILogger.interface";
 import { injectable } from "inversify";
-import "reflect-metadata";
 @injectable()
 export class Logger implements ILogger {
     public log(message: string): void {

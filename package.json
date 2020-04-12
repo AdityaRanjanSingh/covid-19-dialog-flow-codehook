@@ -20,16 +20,20 @@
   },
   "homepage": "https://github.com/AdityaRanjanSingh/covid-19-dialog-flow-codehook#readme",
   "dependencies": {
-    "@types/inversify": "^2.0.33",
     "@types/node": "^13.11.1",
     "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "dialogflow-fulfillment": "^0.6.1",
+    "express": "^4.17.1",
     "inversify": "^5.0.1",
+    "inversify-express-utils": "^6.3.2",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^8.8.2"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
+    "@types/sinon": "^9.0.0",
     "chai": "^4.2.0",
     "mocha": "^7.1.1",
     "nyc": "^15.0.1",
