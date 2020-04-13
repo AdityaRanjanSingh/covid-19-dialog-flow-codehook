@@ -38,7 +38,7 @@ npm i
 run the app in dev
 
 ```
-npm start
+npm start-dev
 ```
 
 ## Running the tests
