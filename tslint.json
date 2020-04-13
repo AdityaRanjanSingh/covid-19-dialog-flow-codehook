@@ -3,6 +3,13 @@
     "extends": [
         "tslint:recommended"
     ],
+    "linterOptions": {
+        "exclude": [
+            "bin",
+            "lib/*generated.js",
+            "src/**/*.spec.ts"
+        ]
+    },
     "jsRules": {},
     "rules": {
         "no-console": false

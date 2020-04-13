@@ -1,9 +1,10 @@
+import "reflect-metadata";
 import { ICovidWorld } from "../../interfaces/covid-world.interface";
 import { injectable, inject } from "inversify";
 import { WebhookClient } from 'dialogflow-fulfillment';
 import { COVID_WORLD } from '../../constants/host-names'
 import axios, { AxiosResponse } from 'axios'
-import "reflect-metadata";
+
 @injectable()
 export class CovidWorld {
     public async  getDataByCountry(agent: WebhookClient): Promise<any> {
@@ -36,11 +37,9 @@ export class CovidWorld {
                     "name": country
                 }
             }).then((response: AxiosResponse) => {
-                console.log("response", response)
                 resolve(response.data)
 
             }).catch(e => {
-                console.log(e);
                 resolve([])
             })
         })
