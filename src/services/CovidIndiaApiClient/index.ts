@@ -48,7 +48,7 @@ export class CovidIndiaApiClient implements ICovidIndiaApiClient {
                 headers: {
                     "content-type": "application/octet-stream",
                     "x-rapidapi-host": COVID_INDIA.HOST,
-                    "x-rapidapi-key": '469fca1101msh43d87fc3e3399d3p1b420ajsna0319cc1dfbc'
+                    "x-rapidapi-key": process.env.COVID_19_WORLD
                 }
             }).then((response) => {
                 resolve(response.data)
@@ -67,7 +67,7 @@ export class CovidIndiaApiClient implements ICovidIndiaApiClient {
                 headers: {
                     "content-type": "application/octet-stream",
                     "x-rapidapi-host": INDIA_PINCODE_API.HOST,
-                    "x-rapidapi-key": '469fca1101msh43d87fc3e3399d3p1b420ajsna0319cc1dfbc'
+                    "x-rapidapi-key": process.env.COVID_19_WORLD
                 }
             });
             client.post('/', {
