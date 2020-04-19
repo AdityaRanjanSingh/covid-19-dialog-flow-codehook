@@ -5,10 +5,6 @@ import Axios, { AxiosResponse } from 'axios'
 import { Messages } from '../../utils/messages'
 import 'mocha';
 import sinon from 'sinon';
-import { WebhookClient } from 'dialogflow-fulfillment';
-import { Request, Response } from 'express';
-import { Agent } from 'http';
-import { syncBuiltinESMExports } from 'module';
 describe('Test CovidIndiaApiClient ', () => {
 
     it('should call the axios get and post with correct params', async () => {
@@ -29,7 +25,7 @@ describe('Test CovidIndiaApiClient ', () => {
                 },
             }
         });
-        const res = await covidIndia.getStatsByPincode({ add: sinon.spy(), parameters: { pincode: '441501' } });
+        const res = await covidIndia.getStatsByPincodeOrCity({ add: sinon.spy(), parameters: { pincode: '441501' } });
         axiosStub.restore();
 
     })
@@ -39,7 +35,6 @@ describe('Test CovidIndiaApiClient ', () => {
         const axiosStub = sinon.stub(Axios, 'create').callsFake((): any => {
             return {
                 get: (path: any) => {
-
                     return Promise.resolve({ data: { items: [] } })
                 },
                 post: (path: any, param: any) => {
@@ -48,7 +43,7 @@ describe('Test CovidIndiaApiClient ', () => {
             }
         });
         let agentAddSpy = sinon.spy()
-        const res = await covidIndia.getStatsByPincode({ add: agentAddSpy, parameters: { pincode: '441501' } });
+        const res = await covidIndia.getStatsByPincodeOrCity({ add: agentAddSpy, parameters: { pincode: '441501' } });
         expect(agentAddSpy.calledOnce).equal(true);
         axiosStub.restore()
     })
@@ -84,7 +79,7 @@ describe('Test CovidIndiaApiClient ', () => {
             }
         });
         let agentAddSpy = sinon.spy()
-        const res = await covidIndia.getStatsByPincode({ add: agentAddSpy, parameters: { pincode: '441501' } });
+        const res = await covidIndia.getStatsByPincodeOrCity({ add: agentAddSpy, parameters: { pincode: '441501' } });
         expect(agentAddSpy.calledOnce).equal(true);
         axiosStub.restore()
     })
@@ -120,7 +115,7 @@ describe('Test CovidIndiaApiClient ', () => {
             }
         });
         let agentAddSpy = sinon.spy()
-        const res = await covidIndia.getStatsByPincode({ add: agentAddSpy, parameters: { pincode: '441501' } });
+        const res = await covidIndia.getStatsByPincodeOrCity({ add: agentAddSpy, parameters: { pincode: '441501' } });
         expect(agentAddSpy.calledOnce).equal(true);
         axiosStub.restore()
     })
@@ -130,7 +125,6 @@ describe('Test CovidIndiaApiClient ', () => {
         const axiosStub = sinon.stub(Axios, 'create').callsFake((): any => {
             return {
                 get: (path: any) => {
-
                     return Promise.resolve({
                         data: {
                             state_wise: {
@@ -156,7 +150,112 @@ describe('Test CovidIndiaApiClient ', () => {
             }
         });
         let agentAddSpy = sinon.spy()
-        const res = await covidIndia.getStatsByPincode({ add: agentAddSpy, parameters: { pincode: '441501' } });
+        const res = await covidIndia.getStatsByPincodeOrCity({ add: agentAddSpy, parameters: { pincode: '441501' } });
+        expect(agentAddSpy.calledOnce).equal(true);
+        axiosStub.restore()
+    })
+    it('should handle replies for get details by city', async () => {
+        let message = sinon.createStubInstance(Messages);
+        let covidIndia = new CovidIndiaApiClient(message)
+        const axiosStub = sinon.stub(Axios, 'create').callsFake((): any => {
+            return {
+                get: (path: any) => {
+                    return Promise.resolve({
+                        data: {
+                            state_wise: {
+                                "Andhra Pradesh": {
+                                    "district": {
+                                        "Amravati": {
+                                            confirmed: 20
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    })
+                },
+                post: (path: any, param: any) => {
+                    return Promise.reject({
+                        data: [{
+                            circle: "Andhra Pradesh",
+                            district: "Amravati"
+                        }]
+                    })
+                },
+            }
+        });
+        let agentAddSpy = sinon.spy()
+        const res = await covidIndia.getStatsByPincodeOrCity({ add: agentAddSpy, parameters: { city: 'Amravati' } });
+        expect(agentAddSpy.calledOnce).equal(true);
+        axiosStub.restore()
+    })
+    it('should handle not pincode and no city', async () => {
+        let message = sinon.createStubInstance(Messages);
+        let covidIndia = new CovidIndiaApiClient(message)
+        const axiosStub = sinon.stub(Axios, 'create').callsFake((): any => {
+            return {
+                get: (path: any) => {
+                    return Promise.resolve({
+                        data: {
+                            state_wise: {
+                                "Andhra Pradesh": {
+                                    "district": {
+                                        "Amravati": {
+                                            confirmed: 20
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    })
+                },
+                post: (path: any, param: any) => {
+                    return Promise.reject({
+                        data: [{
+                            circle: "Andhra Pradesh",
+                            district: "Amravati"
+                        }]
+                    })
+                },
+            }
+        });
+        let agentAddSpy = sinon.spy()
+        const res = await covidIndia.getStatsByPincodeOrCity({ add: agentAddSpy, parameters: {} });
+        expect(agentAddSpy.calledOnce).equal(true);
+        axiosStub.restore()
+    })
+    it('should handle if no city detail', async () => {
+        let message = sinon.createStubInstance(Messages);
+        let covidIndia = new CovidIndiaApiClient(message)
+        const axiosStub = sinon.stub(Axios, 'create').callsFake((): any => {
+            return {
+                get: (path: any) => {
+                    return Promise.resolve({
+                        data: {
+                            state_wise: {
+                                "Andhra Pradesh": {
+                                    "district": {
+                                        "Amravatia": {
+                                            confirmed: 20
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    })
+                },
+                post: (path: any, param: any) => {
+                    return Promise.reject({
+                        data: [{
+                            circle: "Andhra Pradesh",
+                            district: "Amravatia"
+                        }]
+                    })
+                },
+            }
+        });
+        let agentAddSpy = sinon.spy()
+        const res = await covidIndia.getStatsByPincodeOrCity({ add: agentAddSpy, parameters: { city: 'Amravati' } });
         expect(agentAddSpy.calledOnce).equal(true);
         axiosStub.restore()
     })
