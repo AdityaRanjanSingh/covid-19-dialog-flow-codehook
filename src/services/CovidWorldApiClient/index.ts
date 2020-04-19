@@ -19,7 +19,6 @@ export class CovidWorld {
         const response = await this.getDataFromApi(country)
         // this.logger.log(JSON.stringify(response))
 
-        console.log('response', response);
         if (response.length !== 0) {
             const casesCount = this.getCategoryBasedCount(casesType, response[0]);
             const substitues = {
@@ -27,11 +26,7 @@ export class CovidWorld {
                 country,
                 count: casesCount
             };
-            // const context = { name: 'countryName', lifespan: 5, parameters: country }
-            // agent.setFollowupEvent('which country do you want it for ?')
-
             agent.add(this.messages.getMessage(reply, substitues));
-            // this.sendOptions(agent, this.getSuggestionsList(casesType))
             return Promise.resolve(agent)
         } else {
             const substitues = {
@@ -73,23 +68,5 @@ export class CovidWorld {
     public getCategoryBasedCount = (casesType: string, data: any) =>
         (casesType === 'active') ? data.confirmed - (data.recovered + data.deaths) : data[casesType];
 
-    public getSuggestionsList = (caseType: string) => casesTypeList.filter(value => value !== caseType);
-
-    // public sendOptions(agent: WebhookClient, options: string[]) {
-    //     options.map(option => agent.add(new Suggestion(option)))
-    //     let payload = new Payload('FACEBOOK', {
-    //         text: "You cacn check for following parameters also.",
-    //         quick_replies: options
-    //             .slice(0, 5)
-    //             .map(option => {
-    //                 return {
-    //                     content_type: "text",
-    //                     title: option,
-    //                     payload: option
-    //                 }
-    //             })
-    //     });
-    //     agent.add(payload)
-    // }
 
 }
