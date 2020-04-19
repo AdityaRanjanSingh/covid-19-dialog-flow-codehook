@@ -1,3 +1,5 @@
+
 export interface ICovidIndiaApiClient {
-    getCovidData(): void;
+    getStatsByPincode(agent: any): Promise<void>,
+
 }

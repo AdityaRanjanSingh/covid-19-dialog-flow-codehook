@@ -11,13 +11,18 @@ import { DependencyIdentifier } from "./DependencyIdentifiers";
 import './controller';
 import { ICovidWorld } from "./interfaces/covid-world.interface";
 import { CovidWorld } from "./services/CovidWorldApiClient";
+import { CovidIndiaApiClient } from "./services/CovidIndiaApiClient"
+import { ICovidIndiaApiClient } from "./interfaces/covid-india-api-client.interface";
+import { IMessage } from "./interfaces/messages.iterface";
+import { Messages } from "./utils/messages";
 
 const container = new Container();
 
 //  Register dependencies
 container.bind<ILogger>(DependencyIdentifier.LOGGER).to(Logger);
 container.bind<ICovidWorld>(DependencyIdentifier.COVID_WORLD).to(CovidWorld)
-
+container.bind<ICovidIndiaApiClient>(DependencyIdentifier.COVID_INDIA).to(CovidIndiaApiClient)
+container.bind<IMessage>(DependencyIdentifier.MESSAGES).to(Messages)
 // start the server
 const server = new InversifyExpressServer(container);
 
