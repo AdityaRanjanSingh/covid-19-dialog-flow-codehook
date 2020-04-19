@@ -12,6 +12,7 @@ export const pinCodeNotFound = [
 ]
 
 export const areaNotFoundInData = [
-    "There has been no cases reported in ${district} in ${state}"
+    "There has been no cases reported in your district",
+    "I could not find any cases in this area"
 ]
 

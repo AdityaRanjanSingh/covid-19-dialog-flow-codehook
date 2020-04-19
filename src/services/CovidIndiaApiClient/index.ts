@@ -28,7 +28,7 @@ export class CovidIndiaApiClient implements ICovidIndiaApiClient {
         for (const key in dataResponse.state_wise) {
             if (key) {
                 for (const district in dataResponse.state_wise[key].district) {
-                    if (district === city) {
+                    if (district.toLowerCase() === city.toLowerCase()) {
                         cityData = { ...dataResponse.state_wise[key].district[district], "state": key, district }
                     }
                 }
@@ -88,7 +88,6 @@ export class CovidIndiaApiClient implements ICovidIndiaApiClient {
                 resolve(response.data)
 
             }).catch(e => {
-                console.log(e)
                 resolve([])
             })
         })
