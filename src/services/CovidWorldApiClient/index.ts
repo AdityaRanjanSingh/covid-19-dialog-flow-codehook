@@ -30,14 +30,14 @@ export class CovidWorld {
                 count: casesCount
             };
             agent.add(this.messages.getMessage(reply, substitues));
-            if (yesterdayCaseCounts) {
-                const percIncrease = this.getIncreaseCasePerc(totalCaseCounts, yesterdayCaseCounts, casesType).toFixed(2);
-                agent.add(this.messages.getMessage(increasePercReply, {
-                    casesType,
-                    country,
-                    perc: percIncrease
-                }));
-            }
+            // if (yesterdayCaseCounts) {
+            //     const percIncrease = this.getIncreaseCasePerc(totalCaseCounts, yesterdayCaseCounts, casesType).toFixed(2);
+            //     agent.add(this.messages.getMessage(increasePercReply, {
+            //         casesType,
+            //         country,
+            //         perc: percIncrease
+            //     }));
+            // }
             return Promise.resolve(agent)
         } else {
             const substitues = {
