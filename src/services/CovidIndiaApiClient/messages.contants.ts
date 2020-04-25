@@ -1,8 +1,9 @@
 export const reply = [
-    "**${district}** in **${state}** has ${confirmed} cases",
-    "**${district}** has **${confirmed}** cases",
-    "There has been **${confirmed}** in **${district}**"
+    "*${district}* in *${state}* has ${confirmed} cases",
+    "*${district}* has *${confirmed}* cases",
+    "There has been *${confirmed}* in *${district}*"
 ]
+
 
 export const pinCodeNotFound = [
     "I could not find a district by the pin code ${pincode}",
@@ -11,5 +12,7 @@ export const pinCodeNotFound = [
 ]
 
 export const areaNotFoundInData = [
-    "There has been no cases reported in ${district} in ${state}"
+    "There has been no cases reported in your district",
+    "I could not find any cases in this area"
 ]
+

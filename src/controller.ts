@@ -21,7 +21,7 @@ export class Controller {
         const intentMap = new Map();
         // map all the intent with the fulfillment functions here
         intentMap.set('corona-updates-by-country', async (a: WebhookClient) => { return await this.covidWorld.getDataByCountry(a) }); // Could pass the function directly but gives an error hence a workaround
-        intentMap.set('corona-updates-by-pincode-india', async (a: WebhookClient) => { return await this.covidIndia.getStatsByPincode(a) }); // Could pass the function directly but gives an error hence a workaround
+        intentMap.set('corona-updates-by-pincode-india', async (a: WebhookClient) => { return await this.covidIndia.getStatsByPincodeOrCity(a) }); // Could pass the function directly but gives an error hence a workaround
 
         return Promise.resolve(agent.handleRequest(intentMap));
     }
