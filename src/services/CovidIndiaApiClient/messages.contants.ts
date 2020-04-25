@@ -1,7 +1,7 @@
 export const reply = [
-    "*${district}* in *${state}* has ${confirmed} cases",
-    "*${district}* has *${confirmed}* cases",
-    "There has been *${confirmed}* in *${district}*"
+    "${district} in ${state} has ${confirmed} cases",
+    "${district} has ${confirmed} cases",
+    "There has been ${confirmed} in ${district}"
 ]
 
 

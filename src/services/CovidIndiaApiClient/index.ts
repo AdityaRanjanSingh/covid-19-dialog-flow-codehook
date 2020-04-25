@@ -14,7 +14,7 @@ export class CovidIndiaApiClient implements ICovidIndiaApiClient {
         const pincode = agent.parameters.pincode;
         const city = agent.parameters.city;
         if (!pincode && !city) {
-            agent.add('Please tell me city of pincode please')
+            agent.add('Please tell me city or pincode please')
         } else if (pincode) {
             return this.getStatsByPincode(agent);
         } else {
