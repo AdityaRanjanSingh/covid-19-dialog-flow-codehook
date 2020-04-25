@@ -20,7 +20,8 @@ export class CovidWorld {
         const totalCaseCountsPromise = this.getDataFromApi(country);
         const yesterdayCaseCountsPromise = this.getYesterdayDataFromApi(country);
         const [totalCaseCounts, yesterdayCaseCounts] = [await totalCaseCountsPromise, await yesterdayCaseCountsPromise]
-        // this.logger.log(JSON.stringify(response))
+        console.log(JSON.stringify(totalCaseCounts))
+        console.log(JSON.stringify(yesterdayCaseCounts))
         if (totalCaseCounts) {
             const casesCount = this.getCategoryBasedCount(casesType, totalCaseCounts);
             const substitues = {
@@ -118,9 +119,11 @@ export class CovidWorld {
     public getIncreaseCasePerc(totalCaseCounts: any, yesterdayCaseCounts: any, casesType: string) {
         if (casesType === 'active') {
             const yesterdayActive = yesterdayCaseCounts.confirmed - (yesterdayCaseCounts.recovered + yesterdayCaseCounts.deaths)
-            const totalActive = totalCaseCounts.confirmed - (totalCaseCounts.recovered + totalCaseCounts.deaths)
-            return (totalActive - yesterdayActive) / yesterdayActive * 100
+            const totalActive = totalCaseCounts.confirmed - (totalCaseCounts.recovered + totalCaseCounts.deaths);
+            const percent = (totalActive - yesterdayActive) / yesterdayActive
+            return yesterdayActive !== 0 ? percent * 100 : 0
         } else {
+            if (!yesterdayCaseCounts[casesType] || yesterdayCaseCounts[casesType] === 0) { return 0 }
             return (totalCaseCounts[casesType] - yesterdayCaseCounts[casesType]) / yesterdayCaseCounts[casesType] * 100;
         }
     }
